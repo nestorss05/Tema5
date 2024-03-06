@@ -20,13 +20,21 @@ public class Main {
 		int respuesta = 0;
 
 		// boolean correcto: booleana que comprueba si un entero es correcto o no
-		boolean correcto;
+		boolean correcto = false;
 
 		// Inicia el Scanner
 		Scanner sc = new Scanner(System.in);
+		
+		// Pide al usuario un titulo
+		System.out.println("Inserta el titulo del libro");
+		titulo = sc.nextLine();
+
+		// Pide al usuario el autor
+		System.out.println("Inserta el autor del libro");
+		autor = sc.nextLine();
 
 		// Enlaza la clase Libro mediante lib
-		Libro lib = new Libro("", "", 10, 0);
+		Libro lib = new Libro(titulo, autor, 10, 0);
 
 		// Do While
 		do {
@@ -34,47 +42,57 @@ public class Main {
 			// Muestra el menu
 			System.out.println("1. Prestamo");
 			System.out.println("2. Devolucion");
-			System.out.println("3. Salir");
+			System.out.println("3. Mostrar informacion");
+			System.out.println("4. Salir");
 
 			// Pide al usuario la opcion
-			try {
-				respuesta = sc.nextInt();
-			} catch (InputMismatchException e) {
-				System.out.println("ERROR: respuesta invalida");
-			} finally {
-				sc.nextLine();
-			} // Fin Try-Catch
-
+			do {
+				try {
+					respuesta = sc.nextInt();
+					correcto = true;
+				} catch (InputMismatchException e) {
+					System.out.println("ERROR: respuesta invalida");
+				} finally {
+					sc.nextLine();
+				} // Fin Try-Catch
+			} while (!correcto);
+			
+			// Correcto volvera a ser false
+			correcto = false;
+			
 			// Switch respuesta
 			switch (respuesta) {
 			
 			// Case 1 y 2: Prestamo / Devolucion
 			case 1, 2 -> {
 				
-				// Pide al usuario un titulo
-				System.out.println("Inserta el titulo del libro");
-				titulo = sc.nextLine();
-
-				// Pide al usuario el autor
-				System.out.println("Inserta el autor del libro");
-				autor = sc.nextLine();
-				
 				// Pide al usuario la cantidad
 				System.out.println("Inserta la cantidad de libros a pedir prestado / devolver");
-				try {
-					cantidad = sc.nextInt();
-				} catch (InputMismatchException e) {
-					System.out.println("ERROR: respuesta invalida");
-				} finally {
-					sc.nextLine();
-				} // Fin Try-Catch
+				do {
+					try {
+						cantidad = sc.nextInt();
+					} catch (InputMismatchException e) {
+						System.out.println("ERROR: respuesta invalida");
+					} finally {
+						sc.nextLine();
+					} // Fin Try-Catch
+				} while (!correcto);
 				
-				// Continuacion del codigo
+				if (respuesta == 1) {
+					System.out.println(lib.prestamo(cantidad));
+				} else {
+					
+				}
 				
 			}
 
-			// Case 3: sal del programa
+			// Case 3: muestra informacion del libro
 			case 3 -> {
+				lib.mostrarInfo();
+			}
+			
+			// Case 4: sal del programa
+			case 4 -> {
 				System.out.println("Saliendo del programa");
 			}
 
@@ -85,7 +103,10 @@ public class Main {
 
 			} // Fin Switch
 
-		} while (respuesta != 3); // Fin Do-While
+		} while (respuesta != 4); // Fin Do-While
+		
+		// Cierra el Scanner
+		sc.close();
 
 	}
 
