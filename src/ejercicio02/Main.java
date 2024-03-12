@@ -105,7 +105,26 @@ public class Main {
 				codigo = sc.nextInt();
 				sc.nextLine();
 				
-				articulo = (codigo, descripcion, precioCompra, precioVenta, stock);
+				// Pide al usuario la descripcion
+				System.out.println("Introduzca la descripción");
+				descripcion = sc.nextLine();
+				
+				// Pide al usuario el precio de compra
+				System.out.println("Introduzca el precio compra");
+				precioCompra = sc.nextDouble();
+				sc.nextLine();
+				
+				// Pide al usuario el precio de venta
+				System.out.println("Introduzca el precio venta");
+				precioVenta = sc.nextDouble();
+				sc.nextLine();
+				
+				// Pide al usuario el stock
+				System.out.println("Introduzca el stock");
+				stock = sc.nextInt();
+				sc.nextLine();
+				
+				articulo = new Gestisimal(codigo, descripcion, precioCompra, precioVenta, stock);
 				accionExitosa = ArrayArticulos.baja(articulo);
 				if(accionExitosa) {
 					System.out.println("Artículo eliminado correctamente");
