@@ -132,12 +132,25 @@ public class Gestisimal {
 	@Override
 	public String toString() {
 		String cadena = "--------------------------------------------------\n";
-		cadena += "Codigo: " + codigo + " ";
-		cadena += "Descripcion: " + descripcion + " ";
-		cadena += "Precio compra: " + precioCompra + " ";
-		cadena += "Precio venta: " + precioVenta + " ";
+		cadena += "Codigo: " + codigo + " | ";
+		cadena += "Descripcion: " + descripcion + " | ";
+		cadena += "Precio Compra: " + precioCompra + " | ";
+		cadena += "Precio Venta: " + precioVenta + " | ";
 		cadena += "Stock: " + stock;
 		return cadena;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		boolean iguales = false;
+		
+		Gestisimal art2 = (Gestisimal) obj;
+		
+		if(this.codigo == art2.codigo) {
+			iguales = true;
+		}
+		
+		return iguales;
 	}
 
 }
