@@ -17,7 +17,7 @@ public class ArrayArticulos {
 			}
 		}
 	}
-	
+
 	/**
 	 * alta: da de alta un articulo
 	 * 
@@ -55,26 +55,58 @@ public class ArrayArticulos {
 		return anyadido;
 
 	}
-	
+
 	public static boolean baja(Gestisimal art) {
 
 		// boolean eliminado: comprobante de si se ha hecho la operacion bien o no
 		boolean eliminado = false;
 
-		for (int i = 0; i < articulos.length; i++) {
-			if (articulos[i].equals(art)) {
+		// 1º Comprobar si el artículo ya existe
+		int i = 0;
+
+		// Busca el articulo
+		boolean enc = buscaArticulo(art);
+
+		// Si he encontrado el artículo lo tengo que borrar
+		if (enc) {
+
+			// While: mientras que no se pase el array y articulos no sea null, se sumara i
+			while (i < articulos.length && articulos[i] != art) {
+				i++;
+			} // Fin While
+
+			// If: si i es menor que la longitud de articulos, se asignara el articulo a
+			// articulos[i]
+			if (i < articulos.length) {
 				articulos[i] = null;
 				eliminado = true;
-				break;
-			}
-		}
+			} // Fin If
+		} // Fin If
 
 		// Devuelve anyadido al main
 		return eliminado;
 
 	}
 
-	private static boolean buscaArticulo(Gestisimal art) {
+	public static boolean modificar(Gestisimal art) {
+
+		// boolean eliminado: comprobante de si se ha hecho la operacion bien o no
+		boolean modificado = false;
+
+		for (int i = 0; i < articulos.length; i++) {
+			if (articulos[i].equals(art)) {
+				articulos[i] = null;
+				modificado = true;
+				break;
+			}
+		}
+
+		// Devuelve anyadido al main
+		return modificado;
+
+	}
+
+	public static boolean buscaArticulo(Gestisimal art) {
 		int i = 0;
 		boolean enc = false;
 

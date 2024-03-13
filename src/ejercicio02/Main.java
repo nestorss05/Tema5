@@ -9,25 +9,28 @@ public class Main {
 
 		// int opcion: opcion elegida por el usuario
 		int opcion = 0;
-		
+
+		// int opcion2: opcion2 elegida por el usuario
+		int opcion2 = 0;
+
 		// int codigo: codigo del producto
 		int codigo;
-		
+
 		// String descripcion: descripcion del producto
 		String descripcion;
-		
+
 		// String precioCompra: precio de compra del producto
 		double precioCompra;
-		
+
 		// String precioVenta: precio de venta del producto
 		double precioVenta;
-		
+
 		// int stock: stock que tiene un producto
 		int stock;
-		
+
 		// Gestisimal articulo: enlazador a la clase Gestisimal
 		Gestisimal articulo = null;
-		
+
 		// boolean accionExitosa: comprueba si se hizo correctamente una operacion
 		boolean accionExitosa;
 
@@ -62,40 +65,45 @@ public class Main {
 
 			// Case 2: da de alta un producto
 			case 2 -> {
-				
+
 				// Pide al usuario el codigo
 				System.out.println("Introduzca el código");
 				codigo = sc.nextInt();
 				sc.nextLine();
-				
+
 				// Pide al usuario la descripcion
 				System.out.println("Introduzca la descripción");
 				descripcion = sc.nextLine();
-				
+
 				// Pide al usuario el precio de compra
 				System.out.println("Introduzca el precio compra");
 				precioCompra = sc.nextDouble();
 				sc.nextLine();
-				
+
 				// Pide al usuario el precio de venta
 				System.out.println("Introduzca el precio venta");
 				precioVenta = sc.nextDouble();
 				sc.nextLine();
-				
+
 				// Pide al usuario el stock
 				System.out.println("Introduzca el stock");
 				stock = sc.nextInt();
 				sc.nextLine();
-				
+
+				// Añade el producto a articulo
 				articulo = new Gestisimal(codigo, descripcion, precioCompra, precioVenta, stock);
+
+				// Da de alta al usuario
 				accionExitosa = ArrayArticulos.alta(articulo);
-				if(accionExitosa) {
+
+				// If-Else: si se ha podido dar de alta al articulo, se le informara de eso. De
+				// lo contrario, se le informara de que no se le pudo dar de alta
+				if (accionExitosa) {
 					System.out.println("Artículo añadido correctamente");
 				} else {
 					System.out.println("No se ha podido añadir el artículo");
-				}
-				break;
-				
+				} // Fin If-Else
+
 			}
 
 			// Case 3: da de baja un producto
@@ -104,49 +112,97 @@ public class Main {
 				System.out.println("Introduzca el código");
 				codigo = sc.nextInt();
 				sc.nextLine();
-				
-				// Pide al usuario la descripcion
-				System.out.println("Introduzca la descripción");
-				descripcion = sc.nextLine();
-				
-				// Pide al usuario el precio de compra
-				System.out.println("Introduzca el precio compra");
-				precioCompra = sc.nextDouble();
-				sc.nextLine();
-				
-				// Pide al usuario el precio de venta
-				System.out.println("Introduzca el precio venta");
-				precioVenta = sc.nextDouble();
-				sc.nextLine();
-				
-				// Pide al usuario el stock
-				System.out.println("Introduzca el stock");
-				stock = sc.nextInt();
-				sc.nextLine();
-				
-				articulo = new Gestisimal(codigo, descripcion, precioCompra, precioVenta, stock);
-				accionExitosa = ArrayArticulos.baja(articulo);
-				if(accionExitosa) {
-					System.out.println("Artículo eliminado correctamente");
+
+				// Recoge el codigo de articulo
+				articulo = new Gestisimal(codigo);
+
+				// Si se ha encontrado el articulo, se dara de baja el articulo
+				if (ArrayArticulos.buscaArticulo(articulo)) {
+
+					// Da de baja al usuario
+					accionExitosa = ArrayArticulos.baja(articulo);
+
+					// If: Si se ha podido borrar el articulo, se le informara de su
+					// eliminacion
+					if (accionExitosa) {
+						System.out.println("Artículo eliminado correctamente");
+					} // Fin If
+					
 				} else {
 					System.out.println("No se ha podido eliminar el artículo");
-				}
-				break;
+				} // Fin If-Else
+				
 			}
 
 			// Case 4: modifica un producto
 			case 4 -> {
-				
+				// Pide al usuario el codigo
+				System.out.println("Introduzca el código");
+				codigo = sc.nextInt();
+				sc.nextLine();
+
+				// Recoge el codigo de articulo
+				articulo = new Gestisimal(codigo);
+
+				// Si se ha encontrado el articulo, pidele al usuario que dato modificar y
+				// modificalo
+				if (ArrayArticulos.buscaArticulo(articulo)) {
+
+					// Pide al usuario que modificar
+					System.out.println("¿Que dato quieres modificar?");
+					System.out.println("1. Descripcion");
+					System.out.println("2. Precio de compra");
+					System.out.println("3. Precio de venta");
+					opcion2 = sc.nextInt();
+
+					// Switch: segun la opcion elegida, se te pedira cierto dato o no
+					switch (opcion2) {
+
+					// Case 1: Pide al usuario la descripcion
+					case 1 -> {
+						System.out.println("Introduzca la descripción");
+						descripcion = sc.nextLine();
+					}
+
+					// Case 2: Pide al usuario el precio de compra
+					case 2 -> {
+						System.out.println("Introduzca el precio compra");
+						precioCompra = sc.nextDouble();
+						sc.nextLine();
+					}
+
+					// Case 3: Pide al usuario el precio de venta
+					case 3 -> {
+						System.out.println("Introduzca el precio venta");
+						precioVenta = sc.nextDouble();
+						sc.nextLine();
+					}
+
+					// Default: valor invalido
+					default -> {
+						System.out.println("ERROR: valor invalido");
+					}
+
+					} // Fin Switch
+
+					// XD?
+					accionExitosa = ArrayArticulos.modificar(articulo);
+					if (accionExitosa) {
+						System.out.println("Artículo modificado correctamente");
+					}
+				} else {
+					System.out.println("No se ha podido modificar el artículo");
+				}
 			}
 
 			// Case 5: haz una entrada de mercancia
 			case 5 -> {
-				
+
 			}
 
 			// Case 6: haz una salida de mercancia
 			case 6 -> {
-				
+
 			}
 
 			// Case 7: sal del programa
@@ -162,7 +218,7 @@ public class Main {
 			} // Fin Switch
 
 		} while (opcion != 7); // Fin Do-While
-		
+
 		// Cierra el Scanner
 		sc.close();
 

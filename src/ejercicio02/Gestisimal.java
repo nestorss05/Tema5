@@ -40,7 +40,7 @@ public class Gestisimal {
 	}
 
 	/**
-	 * Constructor sin parametros
+	 * Constructor con parametros
 	 * 
 	 * @param codigo       código del artículo
 	 * @param descripcion  descripción del artículo
@@ -69,6 +69,20 @@ public class Gestisimal {
 
 		if (stock >= 0) {
 			this.stock = stock;
+		}
+
+	}
+
+	/**
+	 * Constructor solo con parametro codigo
+	 * 
+	 * @param codigo código del artículo
+	 */
+	public Gestisimal(int codigo) {
+		super();
+
+		if (codigo > 0) {
+			this.codigo = codigo;
 		}
 
 	}
