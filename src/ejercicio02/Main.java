@@ -18,6 +18,9 @@ public class Main {
 
 		// String descripcion: descripcion del producto
 		String descripcion = "";
+		
+		// String departamento: departamento al que pertenece el Articulo
+		String departamento = "";
 
 		// String precioCompra: precio de compra del producto
 		double precioCompra = 0;
@@ -90,6 +93,10 @@ public class Main {
 				// Pide al usuario la descripcion
 				System.out.println("Introduzca la descripción");
 				descripcion = sc.nextLine();
+				
+				// Pide al usuario el departamento
+				System.out.println("Introduzca el departamento");
+				departamento = sc.nextLine().toUpperCase();
 
 				// Pide al usuario el precio de compra
 				System.out.println("Introduzca el precio compra");
@@ -134,7 +141,7 @@ public class Main {
 				} while (!respuestaValida);
 
 				// Añade el producto a articulo
-				articulo = new Gestisimal(codigo, descripcion, precioCompra, precioVenta, stock);
+				articulo = new Gestisimal(codigo, descripcion, precioCompra, precioVenta, stock, departamento);
 
 				// Da de alta al usuario
 				accionExitosa = ArrayArticulos.alta(articulo);
