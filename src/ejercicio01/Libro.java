@@ -28,6 +28,11 @@ public class Libro {
 	private int nPrestados = 0;
 
 	/**
+	 * Genero nGenero: nombre del genero del libro introducido
+	 */
+	private Genero nGenero;
+
+	/**
 	 * Constructor sin parametros
 	 */
 	public Libro() {
@@ -41,13 +46,38 @@ public class Libro {
 	 * @param autor       autor del libro
 	 * @param nEjemplares nº de ejemplares de un libro
 	 * @param nPrestados  nº de ejemplares prestados de un libro
+	 * @param nGenero     nombre del genero del libro introducido
 	 */
-	public Libro(String titulo, String autor, int nEjemplares, int nPrestados) {
+	public Libro(String titulo, String autor, int nEjemplares, int nPrestados, String nGenero) {
 		super();
 		this.titulo = titulo;
 		this.autor = autor;
 		this.nEjemplares = nEjemplares;
 		this.nPrestados = nPrestados;
+		this.nGenero = Genero.valueOf(nGenero);
+	}
+
+	/**
+	 * enum Genero: genero de un libro
+	 */
+	enum Genero {
+		NARRATIVO, LIRICO, DRAMATICO, DIDACTICO, POETICO
+	}
+	
+	/**
+	 * Getter getnGenero
+	 * @return nombre de genero
+	 */
+	public Genero getnGenero() {
+		return nGenero;
+	}
+
+	/**
+	 * Setter setnGenero
+	 * @param nGenero nombre de genero
+	 */
+	public void setnGenero(Genero nGenero) {
+		this.nGenero = nGenero;
 	}
 
 	/**
@@ -104,6 +134,7 @@ public class Libro {
 	public void mostrarInfo() {
 		System.out.println("Titulo: " + titulo);
 		System.out.println("Autor: " + autor);
+		System.out.println("Genero: " + nGenero);
 		System.out.println("Nº de ejemplares disponibles: " + nEjemplares);
 	}
 

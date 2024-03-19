@@ -13,6 +13,9 @@ public class Main {
 		// String autor: autor del libro
 		String autor = "";
 
+		// String generoStrg: genero en String
+		String generoStrg = "";
+
 		// int cantidad: cantidad a pedir prestado / devolver
 		int cantidad = 0;
 
@@ -24,7 +27,7 @@ public class Main {
 
 		// Inicia el Scanner
 		Scanner sc = new Scanner(System.in);
-		
+
 		// Pide al usuario un titulo
 		System.out.println("Inserta el titulo del libro");
 		titulo = sc.nextLine();
@@ -33,8 +36,12 @@ public class Main {
 		System.out.println("Inserta el autor del libro");
 		autor = sc.nextLine();
 
+		// Pide al usuario el genero
+		System.out.println("Inserta el genero del libro");
+		generoStrg = sc.nextLine();
+
 		// Enlaza la clase Libro mediante lib
-		Libro lib = new Libro(titulo, autor, 10, 0);
+		Libro lib = new Libro(titulo, autor, 10, 0, generoStrg);
 
 		// Do While
 		do {
@@ -56,16 +63,16 @@ public class Main {
 					sc.nextLine();
 				} // Fin Try-Catch
 			} while (!correcto);
-			
+
 			// Correcto volvera a ser false
 			correcto = false;
-			
+
 			// Switch respuesta
 			switch (respuesta) {
-			
+
 			// Case 1 y 2: Prestamo / Devolucion
 			case 1, 2 -> {
-				
+
 				// Pide al usuario la cantidad
 				System.out.println("Inserta la cantidad de libros a pedir prestado / devolver");
 				do {
@@ -77,20 +84,20 @@ public class Main {
 						sc.nextLine();
 					} // Fin Try-Catch
 				} while (!correcto);
-				
+
 				if (respuesta == 1) {
 					System.out.println(lib.prestamo(cantidad));
 				} else {
-					
+
 				}
-				
+
 			}
 
 			// Case 3: muestra informacion del libro
 			case 3 -> {
 				lib.mostrarInfo();
 			}
-			
+
 			// Case 4: sal del programa
 			case 4 -> {
 				System.out.println("Saliendo del programa");
@@ -104,7 +111,7 @@ public class Main {
 			} // Fin Switch
 
 		} while (respuesta != 4); // Fin Do-While
-		
+
 		// Cierra el Scanner
 		sc.close();
 
