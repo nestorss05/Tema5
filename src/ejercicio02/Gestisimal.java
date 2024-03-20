@@ -84,7 +84,9 @@ public class Gestisimal {
 			this.stock = stock;
 		}
 		
-		this.departamento = Departamento.valueOf(departamento);
+		if (departamento != null && !departamento.equals("")) {
+			this.departamento = Departamento.valueOf(departamento);
+		}
 
 	}
 
